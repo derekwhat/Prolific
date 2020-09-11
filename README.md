@@ -1,4 +1,4 @@
-# Exercise for Aggregate Data from Prolific
+# Exercise for Aggregating Data from websites
 
 
 Idea: exercise in python for building an end-to-end data workflow
