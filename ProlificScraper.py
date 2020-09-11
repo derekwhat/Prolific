@@ -59,6 +59,19 @@ def loginSite(url, email, psswrd):
     browser.find_element_by_id("login").click()
 
 
+# when study appears:
+# source code for button:
+
+
+# "reserve place" button leds to this event:
+# source code for button is:
+# <button class="el-button button el-button--primar el-button--xl"
+# data-v-bf6a7d82="" type="submit" data-tid="reserve>"
+# has an event: https://app.prolific.co/js/chunk-vendors.5f8c32b8.js:7:51647
+
+
+
+
 if __name__ == '__main__':
     # open Prolific website with selenium in normal windows (not incognito)
     url = r"https://app.prolific.co/studies"
