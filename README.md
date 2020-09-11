@@ -15,3 +15,6 @@ Workflow:
 
 usage for end results:
 - extract information from database for analysis, reporting, etc.
+
+Things never done before:
+- (2020/09/10): set up virual environment with Hydrogen for Atom, with pipenv, for interactive coding experience (to replace Jupyter Notebooks). Also went through the process of setting up virtual environments at the beginning of a project, as best practice.
