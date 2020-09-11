@@ -1,5 +1,8 @@
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.common import exceptions
 from requests import get
 from requests.exceptions import RequestException
@@ -63,9 +66,16 @@ def loginSite(url, email, psswrd):
     opts = Options()
     browser = Firefox(options=opts)
     browser.get(url)
-    username = browser.find_element_by_name("username")
-    password = browser.find_element_by_name("password")
+    try:
+        wait = WebDriverWait(browser, 5)
+        findElement = EC.presence_of_element_located((By.NAME, "username"))
+        username = wait.until(findElement)
+    except exceptions.NoSuchElementException:
+        browser.refresh()
+        time.sleep(2)
+        username = browser.find_element_by_name("username")
     username.send_keys(email)
+    password = browser.find_element_by_name("password")
     password.send_keys(psswrd)
     browser.find_element_by_id("login").click()
 
