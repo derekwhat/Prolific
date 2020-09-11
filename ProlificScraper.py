@@ -4,6 +4,8 @@ from selenium.common import exceptions
 from requests import get
 from requests.exceptions import RequestException
 from contextlib import closing
+import getpass
+import time
 
 # source: https://realpython.com/python-web-scraping-practical-introduction/
 
@@ -45,6 +47,15 @@ def log_error(e):
     print(e)
 
 
+def getCreds():
+    """
+    Ask user for username, then password, then returns both values
+    """
+    email = getpass.getpass(prompt="Email: ")
+    pwd = getpass.getpass(prompt="Password: ")
+    return (email, pwd)
+
+
 def loginSite(url, email, psswrd):
     """
     open website, ideally in non-incognito mode for easy logins
@@ -52,13 +63,23 @@ def loginSite(url, email, psswrd):
     opts = Options()
     browser = Firefox(options=opts)
     browser.get(url)
-    username = browser.find_element_by_id("id_username")
+    username = browser.find_element_by_name("username")
     password = browser.find_element_by_name("password")
     username.send_keys(email)
     password.send_keys(psswrd)
     browser.find_element_by_id("login").click()
 
 
+opts = Options()
+browser = Firefox(options=opts)
+browser.get(r"https://app.prolific.co/studies")
+username = browser.find_element_by_name("username")
+username.send_keys("derekho4.20@gmail.com")
+password = browser.find_element_by_name("password")
+password.send_keys("Welcome2Prolific")
+browser.find_element_by_id("login").click()
+
+# loginSite(r"https://app.prolific.co/studies", "derekho4.20@gmail.com", "Welcome2Prolific")
 # when study appears:
 # source code for button:
 
@@ -68,14 +89,17 @@ def loginSite(url, email, psswrd):
 # <button class="el-button button el-button--primar el-button--xl"
 # data-v-bf6a7d82="" type="submit" data-tid="reserve>"
 # has an event: https://app.prolific.co/js/chunk-vendors.5f8c32b8.js:7:51647
+# try using:
+# bowser.find_element_by_partial_link_text(r"https://app.prolific.co/js/chunk-vendors.")
+# browser.find_element_by_class_name("el-button button el-button--primar el-button--xl")
 
 
-
-
-if __name__ == '__main__':
+def main():
     # open Prolific website with selenium in normal windows (not incognito)
     url = r"https://app.prolific.co/studies"
-    loginSite(url)
+    creds = getCreds()
+    loginSite(url, creds[0], creds[1])
+
 
     # while True loop
     # refresh page
@@ -94,3 +118,7 @@ if __name__ == '__main__':
     # save, disconnect from database
 
     # next level: if there exists button then click it, reserve, notify me (telegram?)
+
+
+if __name__ == '__main__':
+    main()
