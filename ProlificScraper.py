@@ -80,21 +80,13 @@ def loginSite(url, email, psswrd):
     browser.find_element_by_id("login").click()
 
 
-opts = Options()
-browser = Firefox(options=opts)
-browser.get(r"https://app.prolific.co/studies")
-username = browser.find_element_by_name("username")
-username.send_keys("derekho4.20@gmail.com")
-password = browser.find_element_by_name("password")
-password.send_keys("Welcome2Prolific")
-browser.find_element_by_id("login").click()
-
-# loginSite(r"https://app.prolific.co/studies", "derekho4.20@gmail.com", "Welcome2Prolific")
 # when study appears:
 # source code for button:
-
+# stored in <div class="list-pane" data-v-bf6a7d82="">
+# not div class="blankstate"???
 
 # "reserve place" button leds to this event:
+# stored in <div class=detail-pane" data-v-bf6a7d82="">
 # source code for button is:
 # <button class="el-button button el-button--primar el-button--xl"
 # data-v-bf6a7d82="" type="submit" data-tid="reserve>"
