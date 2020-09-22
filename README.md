@@ -2,16 +2,21 @@
 
 
 Idea: exercise in python for building an end-to-end data workflow
-Purpose: Prepare data for analysis on the studies received
-Application: collect data on the studies sent to me on the studies website, Prolific, so it can be later analyzed
+Purpose: Prepare data for analysis on data received
+Application: collect data on trading transactions in real-time, then update a report or dashboard (interactive and updates as data flows). Track continuously updating data, as well as certain events, into the real-time database
 
 Workflow:
-- open https://app.prolific.co/studies and ensure logged in as me
-- continuously monitor prolific website
+- open website with trading transactions (TSX, or something FICC related would be better)
+- log in if necessary (having an account may allow for customizations)
+- continuously monitor the site
+
 - refresh page (or don't since the site does it automatically)
-- if nothing, report "nothing"
-- when there is an update of interest (i.e new job) scrape the contents and report "something"
+- if nothing new, report "nothing"
+- when there is an update of interest (a trade, etc.) scrape the contents and report "something"
 - scraped contents moved into database (real time ideal)
+
+(Alternatively: get data from an API if available, then move into real time database)
+
 
 usage for end results:
 - extract information from database for analysis, reporting, etc.
